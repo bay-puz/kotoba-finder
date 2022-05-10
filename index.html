@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>ことばファインダー</title>
+        <link href="./css/main.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <header><a href="./"><h1>ことばファインダー</h1></a></header>
+        <div id="info">
+            <details>
+                <summary>使い方</summary>
+                入力エリアに文字を入れ、「探す」ボタンを押します。
+            </details>
+        </div>
+        <div id="input">
+            <p>
+                <label for="char1">1文字目</label>
+                <input type="text" id="char1">
+            </p>
+            <p>
+                <label for="char2">2文字目</label>
+                <input type="text" id="char2">
+            </p>
+            <p>
+                <label for="char3">3文字目</label>
+                <input type="text" id="char3">
+            </p>
+            <button id="find">探す</button>
+        </div>
+        <div id="output">
+            <details open>
+                <summary>結果</summary>
+                ここに結果が表示されます。
+            </details>
+        </div>
+        <script type="text/javascript" src="./js/main.js"></script>
+    </body>
+    <footer>
+        <p>データ：<a href="https://github.com/bay-puz/kotobalist" target="_blank">bay-puz/kotobalist</a></p>
+        <p>制作：<a href="https://github.com/bay-puz/kotoba-finder" target="_blank">bay</a></p>
+    </footer>
+</html>
