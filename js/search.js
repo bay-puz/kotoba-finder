@@ -6,7 +6,7 @@ async function loadList () {
 
 function finder(pattern, list) {
     var finds = new Array();
-    const regex = new RegExp(pattern);
+    const regex = new RegExp("^" + pattern + "$");
     list.forEach(word => {
         if (regex.test(word)) {
             finds.push(word)
@@ -16,7 +16,7 @@ function finder(pattern, list) {
 }
 
 function getPattern(param) {
-    var pattern = "^"
+    var pattern = ""
     if (! param.has("n")) {
         return null
     }
@@ -32,6 +32,5 @@ function getPattern(param) {
             pattern += "."
         }
     }
-    pattern += "$"
     return pattern
 }

@@ -14,9 +14,9 @@ async function main() {
         return
     }
     setForm(param);
-    const pat = getPattern(param);
-    const data = await loadList();
-    const finds = finder(pat, data);
-    console.log(finds)
+    const pattern = getPattern(param);
+    const list = await loadList();
+    const findList = finder(pattern, list);
+    showList(pattern, findList)
 }
 main();

@@ -83,3 +83,28 @@ function setFormElement(index) {
 
     document.getElementById("inputCharErea").appendChild(element)
 }
+
+function showList(pattern, list) {
+    const titleMessage = " " + pattern + " - " + list.length + "件"
+    document.getElementsByTagName("title")[0].innerText += titleMessage
+
+    if (list.length === 0) {
+        summaryMessage = "「" + pattern + "」は見つかりませんでした"
+    } else {
+        summaryMessage = "「" + pattern + "」は" + list.length + "件あります"
+    }
+    document.getElementById("resultSummary").innerText = summaryMessage
+
+    var resultElement = document.getElementById("result")
+    resultElement.innerText = ""
+    if (list.length > 1000) {
+        resultElement.innerText = "数が多すぎるため表示しません"
+        return
+    }
+    list.forEach(word => {
+        var element = document.createElement("p")
+        element.innerText = word
+        element.classList.add("word")
+        resultElement.appendChild(element)
+    });
+}
