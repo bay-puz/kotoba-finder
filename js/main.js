@@ -17,3 +17,36 @@ function setUrl() {
     url.search = param
     location.href = url.href
 }
+
+function parseRegex() {
+    var pattern = "^"
+    const param = new URLSearchParams(location.search);
+    if (! param.has("n")) {
+        return null
+    }
+    const len = param.get("n")
+    if (len <= 1) {
+        return null
+    }
+    for (let index = 1; index <= len; index++) {
+        const key = "c" + index;
+        if (param.has(key)) {
+            pattern += "[" + param.get(key) + "]"
+        } else {
+            pattern += "."
+        }
+    }
+    pattern += "$"
+    return pattern
+}
+
+async function main() {
+    const pat = parseRegex();
+    if (pat === null) {
+        return null
+    }
+    const data = await loadList();
+    const finds = finder(pat, data);
+    console.log(finds)
+}
+main();
