@@ -12,10 +12,15 @@ function getLen() {
     return len
 }
 
+function getListName() {
+    return document.getElementById("listName").value
+}
+
 function getForm (){
     var param = new URLSearchParams()
     const len = getLen()
     param.append("n", len)
+    param.append("l", getListName())
     for (let index = 1; index <= len; index++) {
         const elementId = "char" + index
         const char = document.getElementById(elementId).value
@@ -28,6 +33,9 @@ function getForm (){
 }
 
 function setForm (param) {
+    if ( param.has("l")) {
+        document.getElementById("listName").value = param.get("l")
+    }
     if ( ! param.has("n")) {
         return
     }
@@ -60,7 +68,6 @@ function changeFormSize (len) {
         }
         formElement.remove()
     }
-
 }
 
 function setFormElement(index) {

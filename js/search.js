@@ -1,6 +1,8 @@
-listUrl = "https://raw.githubusercontent.com/bay-puz/kotobalist/main/list/all.txt"
+listPath = "https://raw.githubusercontent.com/bay-puz/kotobalist/main/list/"
+listName = {"all": "all.txt", "buta": "buta.txt", "wikip": "wikipedia.txt", "ncpx": "nico-pixiv.txt", "yoji": "yojijukugo.txt"}
 
-async function loadList () {
+async function loadList (name) {
+    const listUrl = listPath + listName[name]
     return await fetch(listUrl).then(response => response.text().then(text => text.split('\n')));
 }
 

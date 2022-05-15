@@ -15,7 +15,8 @@ async function main() {
     }
     setForm(param);
     const pattern = getPattern(param);
-    const list = await loadList();
+    const listName = getListName(param);
+    const list = await loadList(listName);
     const findList = finder(pattern, list);
     showList(pattern, findList)
 }
