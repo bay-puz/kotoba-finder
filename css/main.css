@@ -1,0 +1,89 @@
+header, footer{
+    border-color:darkblue;
+    background-color: aquamarine;
+    padding: 0.2em;
+}
+
+header {
+    border-bottom: solid;
+}
+
+footer {
+    border-top: solid;
+    text-align: end;
+}
+
+header h1 {
+    color:mediumblue;
+    font-weight: bold;
+}
+
+a {
+    color: darkblue;
+    text-decoration: none;
+}
+
+select {
+    font-size: medium;
+    background-color:lightcyan;
+    border: none;
+    padding: 0.2em;
+    width: auto;
+}
+
+#length {
+    width: 3em;
+    padding: 0.1em;
+}
+
+label{
+    display: inline-block;
+    text-align: right;
+    width: 5em;
+}
+
+input {
+    width: 8em;
+}
+
+button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: unset;
+    background-color: lightcyan;
+    border-radius: 0.5em;
+    padding: 0.4em;
+    color: black;
+    text-decoration-line: unset;
+}
+
+summary {
+    cursor: pointer;
+}
+
+details {
+    padding: 1em;
+}
+
+ul {
+    display: inline-block;
+    text-align: left;
+}
+
+body {
+    text-align: center;
+}
+
+.tweet {
+    color: black;
+    text-decoration: none;
+    font-size: x-small;
+    background-color: lightcyan;
+    padding: 0.3em;
+    border-radius: 1em;
+}
+
+#buttonErea {
+    padding-bottom: 1em;
+}

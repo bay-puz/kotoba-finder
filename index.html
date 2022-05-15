@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>ことばファインダー</title>
+        <link href="./css/main.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <header><a href="./"><h1>ことばファインダー</h1></a></header>
+        <div id="info">
+            <details>
+                <summary>使い方</summary>
+                文字毎に条件を入れ、「探す」を押すと言葉を検索します。<br>
+                <ul>
+                    <li>ひらがな（１文字以上）…いずれかが含まれる</li>
+                    <li>「-」…範囲を指定する（例：「お-き」は「おかがき」と同じ）</li>
+                    <li>先頭に「^」…あとに書いたかなが含まれない</li>
+                    <li>入力なし…任意の文字</li>
+                </ul>
+                <br>
+                文字数を変えると入力欄が増減します。<br>
+                使うリストは変えることもできます。「すべて」には他のリストの言葉がすべて含まれます。
+            </details>
+            <details>
+                <summary>注意点</summary>
+                検索対象のリストは、豚辞書やWikipediaを加工したものです。<br>
+                リストの内容や作り方は<a href="https://github.com/bay-puz/kotobalist/tree/main/list" target="_blank">kotobalist</a>をご覧ください。<br>
+                リストには、ペンシルパズルや謎解きに使うには不適切な言葉が含まれることがあります。<br>
+                このサイトで見つけた言葉をペンシルパズル・謎解きなどに利用してもかまいませんが、<br>
+                それによって損害を被っても作者は責任を取りません。
+            </details>
+        </div>
+        <div id="input">
+            <p>
+                <label for="listName">リスト</label>
+                <select id="listName">
+                    <option value="all" selected>すべて</option>
+                    <option value="buta">豚辞書</option>
+                    <option value="wikip">Wikipedia</option>
+                    <option value="ncpx">ニコニコ＆Pixiv</option>
+                    <option value="yoji">四字熟語</option>
+                </select>
+            </p>
+            <p>
+                <label for="length">文字数</label>
+                <input type="number" id="length" value="5" min="2" max="30">
+            </p>
+            <div id="inputCharErea">
+                <p id="form1">
+                    <label for="char1">1文字目</label>
+                    <input type="text" id="char1">
+                </p>
+            </div>
+            <button id="find">探す</button>
+        </div>
+        <div id="output">
+            <details open>
+                <summary><span id="resultSummary">結果</span></summary>
+                <div id="result">ここに見つかった言葉が表示されます。</div>
+            </details>
+        </div>
+        <div id="buttonErea">
+            <a href="" class="tweet" target="_blank">Twitter🔗</a>
+        </div>
+        <script type="text/javascript" src="./js/io.js"></script>
+        <script type="text/javascript" src="./js/search.js"></script>
+        <script type="text/javascript" src="./js/main.js"></script>
+    </body>
+    <footer>
+        <p>データ：<a href="https://github.com/bay-puz/kotobalist" target="_blank">bay-puz/kotobalist</a></p>
+        <p>制作：<a href="https://github.com/bay-puz/kotoba-finder" target="_blank">bay</a></p>
+    </footer>
+</html>
