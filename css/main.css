@@ -28,6 +28,22 @@ select {
     background-color:lightcyan;
     border: none;
     padding: 0.2em;
+    width: auto;
+}
+
+#length {
+    width: 3em;
+    padding: 0.1em;
+}
+
+label{
+    display: inline-block;
+    text-align: right;
+    width: 5em;
+}
+
+input {
+    width: 8em;
 }
 
 button {
