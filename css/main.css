@@ -74,3 +74,16 @@ ul {
 body {
     text-align: center;
 }
+
+.tweet {
+    color: black;
+    text-decoration: none;
+    font-size: x-small;
+    background-color: lightcyan;
+    padding: 0.3em;
+    border-radius: 1em;
+}
+
+#buttonErea {
+    padding-bottom: 1em;
+}

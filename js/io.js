@@ -101,6 +101,7 @@ function showList(pattern, list) {
         summaryMessage = "「" + pattern + "」は" + list.length + "件あります"
     }
     document.getElementById("resultSummary").innerText = summaryMessage
+    setTweetUrl(summaryMessage)
 
     var resultElement = document.getElementById("result")
     resultElement.innerText = ""
@@ -114,4 +115,17 @@ function showList(pattern, list) {
         element.classList.add("word")
         resultElement.appendChild(element)
     });
+}
+
+function setTweetUrl(message) {
+    var params = new URLSearchParams();
+    params.append("text", message);
+    params.append("hashtags", "ことばファインダー");
+    params.append("url", location.href);
+    var url = new URL("https://twitter.com/intent/tweet");
+    url.search = params.toString();
+    var elements = document.getElementsByClassName("tweet")
+    for(var element of elements) {
+        element.href = url.href
+    }
 }
