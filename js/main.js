@@ -8,10 +8,10 @@ function setUrl() {
 }
 
 async function main() {
+    setTweetUrl("言葉を探しています")
     const param = new URLSearchParams(location.search);
     if (! param.has("n") || param.get("n") < 2){
         changeFormSize(getLen())
-        setTweetUrl("言葉を探しています")
         return
     }
     setForm(param);
