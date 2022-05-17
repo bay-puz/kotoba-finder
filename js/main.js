@@ -24,6 +24,7 @@ async function main() {
     const findList = finder(pattern, len, list);
     if (findList === null) {
         setResultList(["入力に誤りがあります"])
+        return
     }
     showList(pattern, findList)
 }
