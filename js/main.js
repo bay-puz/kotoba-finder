@@ -14,13 +14,17 @@ async function main() {
         setTweetUrl("言葉を探しています")
         return
     }
-    setResultList(["探しています…"])
     setForm(param);
-    const pattern = getPattern(param);
-    const len = getLen();
+    setResultList(["リストを読み込みます…"])
     const listName = getListName(param);
     const list = await loadList(listName);
+    setResultList(["言葉を探しています…"])
+    const pattern = getPattern(param);
+    const len = getLen();
     const findList = finder(pattern, len, list);
+    if (findList === null) {
+        setResultList(["入力に誤りがあります"])
+    }
     showList(pattern, findList)
 }
 main();

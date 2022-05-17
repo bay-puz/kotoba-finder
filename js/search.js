@@ -16,8 +16,13 @@ function finder(pattern, len, list) {
             listLen.push(word)
         }
     }
-    const regex = new RegExp("^" + pattern + "$");
-    return listLen.filter(word => regex.test(word))
+    try {
+        const regex = new RegExp("^" + pattern + "$");
+        return listLen.filter(word => regex.test(word))
+    }
+    catch (err) {
+        return null
+    }
 }
 
 function getPattern(param) {
