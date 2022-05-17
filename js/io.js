@@ -92,29 +92,41 @@ function setFormElement(index) {
 }
 
 function showList(pattern, list) {
-    const titleMessage = " " + pattern + " - " + list.length + "件"
-    document.getElementsByTagName("title")[0].innerText += titleMessage
+    const titleMessage = "ことばファインダー " + pattern + "（" + list.length + "件）"
+    setTitle(titleMessage)
 
     if (list.length === 0) {
         summaryMessage = "「" + pattern + "」は見つかりませんでした"
     } else {
         summaryMessage = "「" + pattern + "」は" + list.length + "件あります"
     }
-    document.getElementById("resultSummary").innerText = summaryMessage
+    setResultSummary(summaryMessage)
     setTweetUrl(summaryMessage)
 
+    if (list.length > 1000) {
+        setResultList(["数が多すぎるため表示しません"])
+    } else {
+        setResultList(list)
+    }
+}
+
+function setTitle(message) {
+    document.getElementsByTagName("title")[0].innerText = message
+}
+
+function setResultList(list) {
     var resultElement = document.getElementById("result")
     resultElement.innerText = ""
-    if (list.length > 1000) {
-        resultElement.innerText = "数が多すぎるため表示しません"
-        return
-    }
     list.forEach(word => {
         var element = document.createElement("p")
         element.innerText = word
         element.classList.add("word")
         resultElement.appendChild(element)
     });
+}
+
+function setResultSummary(message) {
+    document.getElementById("resultSummary").innerText = message
 }
 
 function setTweetUrl(message) {
