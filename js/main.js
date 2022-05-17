@@ -14,6 +14,7 @@ async function main() {
         setTweetUrl("言葉を探しています")
         return
     }
+    setResultList(["探しています…"])
     setForm(param);
     const pattern = getPattern(param);
     const listName = getListName(param);
