@@ -1,10 +1,4 @@
 function kataToHira (char) {
-    if (char.length === 0) {
-        return ''
-    }
-    if ( char.length > 1 ) {
-        return kataToHira(char.slice(0,1)) + kataToHira(char.slice(1))
-    }
     code = char.codePointAt(0)
     if ('ァ'.codePointAt(0) <= code && code <= 'ヶ'.codePointAt(0)) {
         code -= 96
@@ -13,13 +7,6 @@ function kataToHira (char) {
 }
 
 function convertHira (char) {
-    if (char.length === 0) {
-        return ''
-    }
-    if ( char.length > 1 ) {
-        return convertHira(char.slice(0,1)) + convertHira(char.slice(1))
-    }
-
     const str_before = "ぁぃぅぇぉゕゖっゃゅょゎゐゑ〜～ゔ"
     const str_after = "あいうえおかけつやゆよわいえーーぶ"
 
@@ -29,13 +16,30 @@ function convertHira (char) {
     return char
 }
 
-function normalizeKana (str) {
-    return convertHira(kataToHira(str))
+function isSearchChar (char) {
+    if (char.length !== 1) {
+        return false
+    }
+    const allKana = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんーがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ'
+    const searchSign = '^'
+
+    if ( allKana.includes(char) || searchSign.includes(char) ) {
+        return true
+    }
+    return false
 }
 
-function charToPattern (char) {
-    if ( char.length == 0 ) {
+function inputToPattern (str) {
+    var pattern = ""
+    for (let index = 0; index < str.length; index++) {
+        var char = str.charAt(index);
+        kana = convertHira(kataToHira(char))
+        if ( isSearchChar(kana) ) {
+            pattern += kana
+        }
+    };
+    if (pattern === "") {
         return "."
     }
-    return "[" + normalizeKana(char) + "]"
+    return "[" + pattern + "]"
 }

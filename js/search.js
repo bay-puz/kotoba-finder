@@ -37,7 +37,7 @@ function getPattern(param) {
     for (let index = 1; index <= len; index++) {
         const key = "c" + index;
         if (param.has(key) ) {
-            pattern += charToPattern(param.get(key))
+            pattern += inputToPattern(param.get(key))
         }
     }
     return pattern
