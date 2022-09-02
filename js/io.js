@@ -26,7 +26,7 @@ function getForm (){
         const char = document.getElementById(elementId).value
         if ( char.length > 0 ) {
             const key = "c" + index
-            param.append(key, char)
+            param.append(key, normalizeKana(char))
         }
     }
     return param
