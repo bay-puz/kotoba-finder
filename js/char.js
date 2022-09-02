@@ -6,14 +6,15 @@ function kataToHira (char) {
     return String.fromCodePoint(code)
 }
 
-function convertHira (char) {
-    const str_before = "ぁぃぅぇぉゕゖっゃゅょゎゐゑ〜～ゔ"
-    const str_after = "あいうえおかけつやゆよわいえーーぶ"
+function convertChar (char) {
+    charHira = kataToHira(char)
 
-    if ( str_before.includes(char) ) {
-        return str_after.charAt(str_before.indexOf(char))
+    const str_before = "ぁぃぅぇぉゕゖっゃゅょゎゐゑ〜～ゔ＾！？"
+    const str_after = "あいうえおかけつやゆよわいえーーぶ^!?"
+    if ( str_before.includes(charHira) ) {
+        return str_after.charAt(str_before.indexOf(charHira))
     }
-    return char
+    return charHira
 }
 
 function isSearchChar (char) {
@@ -21,7 +22,7 @@ function isSearchChar (char) {
         return false
     }
     const allKana = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんーがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ'
-    const searchSign = '^'
+    const searchSign = '^!?'
 
     if ( allKana.includes(char) || searchSign.includes(char) ) {
         return true
@@ -29,17 +30,30 @@ function isSearchChar (char) {
     return false
 }
 
+function decodeSign (char) {
+    if ( char === '!' ) {
+        return "んー"
+    }
+    if ( char === '?' ) {
+        return "^んー"
+    }
+    return char
+}
+
 function inputToPattern (str) {
     var pattern = ""
     for (let index = 0; index < str.length; index++) {
         var char = str.charAt(index);
-        kana = convertHira(kataToHira(char))
+        kana = convertChar(char)
         if ( isSearchChar(kana) ) {
-            pattern += kana
+            pattern += decodeSign(kana)
         }
     };
     if (pattern === "") {
         return "."
     }
+    pattern = pattern.replaceAll('^^', '')
+    pattern = pattern.replaceAll(/(.)\^.+$/g, '$1')
+
     return "[" + pattern + "]"
 }
