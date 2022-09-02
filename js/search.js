@@ -26,7 +26,6 @@ function finder(pattern, len, list) {
 }
 
 function getPattern(param) {
-    var pattern = ""
     if (! param.has("n")) {
         return null
     }
@@ -34,12 +33,11 @@ function getPattern(param) {
     if (len <= 1) {
         return null
     }
+    var pattern = ""
     for (let index = 1; index <= len; index++) {
         const key = "c" + index;
-        if (param.has(key)) {
-            pattern += "[" + param.get(key) + "]"
-        } else {
-            pattern += "."
+        if (param.has(key) ) {
+            pattern += charToPattern(param.get(key))
         }
     }
     return pattern

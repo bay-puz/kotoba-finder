@@ -32,3 +32,10 @@ function convertHira (char) {
 function normalizeKana (str) {
     return convertHira(kataToHira(str))
 }
+
+function charToPattern (char) {
+    if ( char.length == 0 ) {
+        return "."
+    }
+    return "[" + normalizeKana(char) + "]"
+}

@@ -1,11 +1,4 @@
-document.getElementById("find").addEventListener("click", setUrl);
 document.getElementById("length").addEventListener("change", function(){changeFormSize(getLen())})
-
-function setUrl() {
-    var url = new URL(location.href)
-    url.search = getForm()
-    location.href = url.href
-}
 
 async function main() {
     setTweetUrl("言葉を探しています")

@@ -45,6 +45,7 @@ function setForm (param) {
         const key = "c" + index
         if (param.has(key)) {
             const elementId = "char" + index
+            document.getElementById(elementId).name = "c" + index
             document.getElementById(elementId).value = param.get(key)
         }
     }
@@ -72,10 +73,12 @@ function changeFormSize (len) {
 
 function setFormElement(index) {
     const inputElementId = "char" + index
+    const inputElementName = "c" + index
     const formElementId = "form" + index
 
     var inputElement = document.createElement("input")
     inputElement.id = inputElementId
+    inputElement.name = inputElementName
     inputElement.type = "text"
     inputElement.classList.add("inputChar")
 
