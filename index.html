@@ -13,14 +13,16 @@
                 <summary>使い方</summary>
                 文字毎に条件を入れ、「探す」を押すと言葉を検索します。<br>
                 <ul>
-                    <li>ひらがな（１文字以上）…いずれかが含まれる</li>
+                    <li>かな（１文字以上）…いずれかの文字が含まれる。カタカナはひらがなに変換されます。</li>
                     <li>「-」…範囲を指定する（例：「お-き」は「おかがき」と同じ）</li>
                     <li>先頭に「^」…あとに書いたかなが含まれない</li>
+                    <li>！…「んー」と同じ</li>
+                    <li>？…「^んー」と同じ</li>
                     <li>入力なし…任意の文字</li>
                 </ul>
                 <br>
                 文字数を変えると入力欄が増減します。<br>
-                使うリストは変えることもできます。「すべて」には他のリストの言葉がすべて含まれます。
+                使うリストを変えることもできます。「すべて」には他のリストの言葉がすべて含まれます。
             </details>
             <details>
                 <summary>注意点</summary>
@@ -31,10 +33,10 @@
                 それによって損害を被っても作者は責任を取りません。
             </details>
         </div>
-        <div id="input">
+        <form action="" method="get" id="input">
             <p>
                 <label for="listName">リスト</label>
-                <select id="listName">
+                <select id="listName" name="l">
                     <option value="all" selected>すべて</option>
                     <option value="buta">豚辞書</option>
                     <option value="wikip">Wikipedia</option>
@@ -44,16 +46,16 @@
             </p>
             <p>
                 <label for="length">文字数</label>
-                <input type="number" id="length" value="5" min="2" max="30">
+                <input type="number" id="length" name="n" value="5" min="2" max="30">
             </p>
             <div id="inputCharErea">
                 <p id="form1">
                     <label for="char1">1文字目</label>
-                    <input type="text" id="char1">
+                    <input type="text" id="char1" name="c1">
                 </p>
             </div>
             <button id="find">探す</button>
-        </div>
+        </form>
         <div id="output">
             <details open>
                 <summary><span id="resultSummary">結果</span></summary>
@@ -63,6 +65,7 @@
         <div id="buttonErea">
             <a href="" class="tweet" target="_blank">Twitter🔗</a>
         </div>
+        <script type="text/javascript" src="./js/char.js"></script>
         <script type="text/javascript" src="./js/io.js"></script>
         <script type="text/javascript" src="./js/search.js"></script>
         <script type="text/javascript" src="./js/main.js"></script>
