@@ -1,4 +1,4 @@
-# [kotoba-finder](https://bay-puz.github.io/kotoba-finder/])
+# [kotoba-finder](https://bay-puz.github.io/kotoba-finder/)
 
 言葉を検索するサイト。
 
