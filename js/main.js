@@ -8,13 +8,13 @@ async function main() {
         return
     }
     setForm(param);
-    setResultList(["リストを読み込みます…"])
-    const listName = getListName(param);
-    const list = await loadList(listName);
+    setResultList(["リストを読み込んでいます…"])
+    const listName = getListName();
+    const len = getLen();
+    const list = await load(listName, len);
     setResultList(["言葉を探しています…"])
     const pattern = getPattern(param);
-    const len = getLen();
-    const findList = finder(pattern, len, list);
+    const findList = finder(pattern, list);
     if (findList === null) {
         setResultList(["入力に誤りがあります"])
         return

@@ -1,24 +1,28 @@
-listPath = "https://raw.githubusercontent.com/bay-puz/kotobalist/main/list/"
-listName = {"all": "all.txt", "buta": "buta.txt", "wikip": "wikipedia.txt", "ncpx": "nico-pixiv.txt", "yoji": "yojijukugo.txt"}
+listPath = "https://raw.githubusercontent.com/bay-puz/kotobalist/index/list/"
+indexUrl = listPath + "index.json"
 
 async function loadList (name) {
-    const listUrl = listPath + listName[name]
+    const listUrl = listPath + name + ".txt"
     return await fetch(listUrl).then(response => response.text().then(text => text.split('\n')));
 }
 
-function finder(pattern, len, list) {
-    var listLen = new Array();
-    for (const word of list) {
-        if (word.length > len) {
-            break
-        }
-        if (word.length == len) {
-            listLen.push(word)
-        }
-    }
+async function loadIndex () {
+    return await fetch(indexUrl).then(response => response.json())
+}
+
+async function load (name, len) {
+    const index = await loadIndex()
+    const start = index[name][len]["start"]
+    const count = index[name][len]["count"]
+
+    const list = await loadList(name)
+    return list.slice(start, start + count)
+}
+
+function finder(pattern, list) {
     try {
         const regex = new RegExp("^" + pattern + "$");
-        return listLen.filter(word => regex.test(word))
+        return list.filter(word => regex.test(word))
     }
     catch (err) {
         return null
