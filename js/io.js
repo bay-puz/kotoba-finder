@@ -16,22 +16,6 @@ function getListName() {
     return document.getElementById("listName").value
 }
 
-function getForm (){
-    var param = new URLSearchParams()
-    const len = getLen()
-    param.append("n", len)
-    param.append("l", getListName())
-    for (let index = 1; index <= len; index++) {
-        const elementId = "char" + index
-        const char = document.getElementById(elementId).value
-        if ( char.length > 0 ) {
-            const key = "c" + index
-            param.append(key, normalizeKana(char))
-        }
-    }
-    return param
-}
-
 function setForm (param) {
     if ( param.has("l")) {
         document.getElementById("listName").value = param.get("l")
