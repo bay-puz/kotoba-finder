@@ -40,9 +40,7 @@ function getPattern(param) {
     var pattern = ""
     for (let index = 1; index <= len; index++) {
         const key = "c" + index;
-        if (param.has(key) ) {
-            pattern += inputToPattern(param.get(key))
-        }
+        pattern += inputToPattern(param.get(key))
     }
     return pattern
 }

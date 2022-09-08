@@ -128,3 +128,12 @@ function setTweetUrl(message) {
         element.href = url.href
     }
 }
+
+function removeUnsetChars() {
+    var inputElements = document.getElementsByClassName("inputChar")
+    for (var input of inputElements) {
+        if ( input.value.length === 0 ) {
+            input.disabled = true
+        }
+    }
+}

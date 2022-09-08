@@ -41,6 +41,9 @@ function decodeSign (char) {
 }
 
 function inputToPattern (str) {
+    if ( str === null || str.length === 0 ) {
+        return "."
+    }
     var pattern = ""
     for (let index = 0; index < str.length; index++) {
         var char = str.charAt(index);
