@@ -1,4 +1,4 @@
-listPath = "https://raw.githubusercontent.com/bay-puz/kotobalist/index/list/"
+listPath = "https://raw.githubusercontent.com/bay-puz/kotobalist/main/list/"
 indexUrl = listPath + "index.json"
 
 async function loadList (name) {
