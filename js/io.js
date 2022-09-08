@@ -29,7 +29,6 @@ function setForm (param) {
         const key = "c" + index
         if (param.has(key)) {
             const elementId = "char" + index
-            document.getElementById(elementId).name = "c" + index
             document.getElementById(elementId).value = param.get(key)
         }
     }
@@ -65,6 +64,7 @@ function setFormElement(index) {
     inputElement.name = inputElementName
     inputElement.type = "text"
     inputElement.classList.add("inputChar")
+    inputElement.addEventListener("change", function(){inputElement.value = convertSearchString(inputElement.value)})
 
     var labelElement = document.createElement("label")
     labelElement.for = inputElementId
@@ -126,5 +126,14 @@ function setTweetUrl(message) {
     var elements = document.getElementsByClassName("tweet")
     for(var element of elements) {
         element.href = url.href
+    }
+}
+
+function disableEmptyInputs() {
+    var inputElements = document.getElementsByClassName("inputChar")
+    for (var input of inputElements) {
+        if ( input.value.length === 0 ) {
+            input.disabled = true
+        }
     }
 }
