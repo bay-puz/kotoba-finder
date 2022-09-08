@@ -1,5 +1,5 @@
 document.getElementById("length").addEventListener("change", function(){changeFormSize(getLen())})
-document.getElementById("input").addEventListener("submit", removeUnsetChars)
+document.getElementById("input").addEventListener("submit", disableEmptyInputs)
 
 async function main() {
     setTweetUrl("言葉を探しています")

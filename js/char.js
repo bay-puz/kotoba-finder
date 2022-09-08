@@ -30,33 +30,34 @@ function isSearchChar (char) {
     return false
 }
 
-function decodeSign (char) {
-    if ( char === '!' ) {
-        return "んー"
+function decodeSign (str) {
+    str = str.replaceAll('!', 'んー').replaceAll('?', '^んー')
+    str = str.replaceAll('^^', '')
+    str = str.replace(/^([^^]+)\^.+$/g, '$1') // [あい^うえ] => [あい]
+    setStr = new Set(str) // 重複排除
+    str = [...setStr].sort().join('') // 並び替え
+    return str
+}
+
+function convertSearchString (str) {
+    var searchStr = ""
+    for (let index = 0; index < str.length; index++) {
+        var char = str.charAt(index);
+        kana = convertChar(char)
+        if ( isSearchChar(kana) ) {
+            searchStr += kana
+        }
     }
-    if ( char === '?' ) {
-        return "^んー"
-    }
-    return char
+    return decodeSign(searchStr)
 }
 
 function inputToPattern (str) {
     if ( str === null || str.length === 0 ) {
         return "."
     }
-    var pattern = ""
-    for (let index = 0; index < str.length; index++) {
-        var char = str.charAt(index);
-        kana = convertChar(char)
-        if ( isSearchChar(kana) ) {
-            pattern += decodeSign(kana)
-        }
-    };
-    if (pattern === "") {
+    const searchStr = convertSearchString(str)
+    if (searchStr.length === 0) {
         return "."
     }
-    pattern = pattern.replaceAll('^^', '')
-    pattern = pattern.replaceAll(/(.)\^.+$/g, '$1')
-
-    return "[" + pattern + "]"
+    return "[" + searchStr + "]"
 }
