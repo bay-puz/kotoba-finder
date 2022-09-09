@@ -20,6 +20,6 @@ async function main() {
         setResultList(["入力に誤りがあります"])
         return
     }
-    showList(pattern, findList)
+    showList(len, pattern, findList)
 }
 main();

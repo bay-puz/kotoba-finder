@@ -87,3 +87,19 @@ body {
 #buttonErea {
     padding-bottom: 1em;
 }
+
+label {
+    padding-right: 0.5em;
+}
+
+.charLabel {
+    width: 11em;
+}
+
+.charSupple {
+    display: inline-block;
+    padding-left: 1em;
+    font-size: small;
+    width: 10em;
+    text-align: left;
+}

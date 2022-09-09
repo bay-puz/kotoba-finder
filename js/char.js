@@ -30,13 +30,17 @@ function isSearchChar (char) {
     return false
 }
 
+function uniqStr(str) {
+    setStr = new Set(str) // 重複排除
+    arrayStr = [...setStr].sort() // 並び替え
+    return arrayStr.join('')
+}
+
 function decodeSign (str) {
     str = str.replaceAll('!', 'んー').replaceAll('?', '^んー')
     str = str.replaceAll('^^', '')
     str = str.replace(/^([^^]+)\^.+$/g, '$1') // [あい^うえ] => [あい]
-    setStr = new Set(str) // 重複排除
-    str = [...setStr].sort().join('') // 並び替え
-    return str
+    return uniqStr(str)
 }
 
 function convertSearchString (str) {
