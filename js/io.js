@@ -2,7 +2,8 @@ const minLen = 2
 const maxLen = 30
 
 function getLen() {
-    var len = document.getElementById("length").value
+    const lengthValue = document.getElementById("length").value
+    const len = Number(lengthValue)
     if (len < minLen) {
         return minLen
     }
@@ -58,6 +59,7 @@ function setFormElement(index) {
     const inputElementId = "char" + index
     const inputElementName = "c" + index
     const formElementId = "form" + index
+    const suppleElementId = "supple" + index
 
     var inputElement = document.createElement("input")
     inputElement.id = inputElementId
@@ -69,16 +71,22 @@ function setFormElement(index) {
     var labelElement = document.createElement("label")
     labelElement.for = inputElementId
     labelElement.innerText = index + "文字目"
+    labelElement.classList.add("charLabel")
+
+    var suppleElement = document.createElement("span")
+    suppleElement.id = suppleElementId
+    suppleElement.classList.add("charSupple")
 
     var element = document.createElement("p")
     element.id = formElementId
     element.appendChild(labelElement)
     element.appendChild(inputElement)
+    element.appendChild(suppleElement)
 
     document.getElementById("inputCharErea").appendChild(element)
 }
 
-function showList(pattern, list) {
+function showList(len, pattern, list) {
     const titleMessage = "ことばファインダー " + pattern + "（" + list.length + "件）"
     setTitle(titleMessage)
 
@@ -95,6 +103,8 @@ function showList(pattern, list) {
     } else {
         setResultList(list)
     }
+
+    showCharSupple(len, list)
 }
 
 function setTitle(message) {
@@ -114,6 +124,31 @@ function setResultList(list) {
 
 function setResultSummary(message) {
     document.getElementById("resultSummary").innerText = message
+}
+
+function showCharSupple(len, list) {
+    let charArray = Array(len).fill('')
+    for (const word of list) {
+        for (let index = 0; index < len; index++) {
+            charArray[index] += word[index]
+        }
+    }
+
+    for (let index = 0; index < len; index++) {
+        var str = uniqStr(charArray[index])
+        if ( str.length > 9 ) {
+            str = "10+"
+        }
+        setCharSupple(index, str)
+    }
+}
+
+function setCharSupple(index, str) {
+    const num = index + 1
+    const element = document.getElementById("supple" + num)
+    if ( element != null ) {
+        element.innerText = str
+    }
 }
 
 function setTweetUrl(message) {
