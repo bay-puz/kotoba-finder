@@ -87,8 +87,6 @@ function setFormElement(index) {
 }
 
 function showList(len, pattern, list) {
-    const titleMessage = "ことばファインダー " + pattern + "（" + list.length + "件）"
-    setTitle(titleMessage)
 
     if (list.length === 0) {
         summaryMessage = "「" + pattern + "」は見つかりませんでした"
@@ -96,7 +94,6 @@ function showList(len, pattern, list) {
         summaryMessage = "「" + pattern + "」は" + list.length + "件あります"
     }
     setResultSummary(summaryMessage)
-    setTweetUrl(summaryMessage)
 
     if (list.length > 1000) {
         setResultList(["数が多すぎるため表示しません"])
@@ -107,8 +104,9 @@ function showList(len, pattern, list) {
     showCharSupple(len, list)
 }
 
-function setTitle(message) {
-    document.getElementsByTagName("title")[0].innerText = message
+function setTitle(pattern) {
+    const titleMessage = "ことばファインダー　" + "【" + pattern + "】"
+    document.getElementsByTagName("title")[0].innerText = titleMessage
 }
 
 function setResultList(list) {
@@ -148,19 +146,6 @@ function setCharSupple(index, str) {
     const element = document.getElementById("supple" + num)
     if ( element != null ) {
         element.innerText = str
-    }
-}
-
-function setTweetUrl(message) {
-    var params = new URLSearchParams();
-    params.append("text", message);
-    params.append("hashtags", "ことばファインダー");
-    params.append("url", location.href);
-    var url = new URL("https://twitter.com/intent/tweet");
-    url.search = params.toString();
-    var elements = document.getElementsByClassName("tweet")
-    for(var element of elements) {
-        element.href = url.href
     }
 }
 

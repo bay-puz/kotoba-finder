@@ -9,8 +9,8 @@ function kataToHira (char) {
 function convertChar (char) {
     charHira = kataToHira(char)
 
-    const str_before = "ぁぃぅぇぉゕゖっゃゅょゎゐゑ〜～ゔ＾！？"
-    const str_after = "あいうえおかけつやゆよわいえーーぶ^!?"
+    const str_before = "ぁぃぅぇぉゕゖっゃゅょゎゐゑ〜～ゔ＾？"
+    const str_after = "あいうえおかけつやゆよわいえーーぶ^?"
     if ( str_before.includes(charHira) ) {
         return str_after.charAt(str_before.indexOf(charHira))
     }
@@ -22,7 +22,7 @@ function isSearchChar (char) {
         return false
     }
     const allKana = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんーがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ'
-    const searchSign = '^!?'
+    const searchSign = '^?'
 
     if ( allKana.includes(char) || searchSign.includes(char) ) {
         return true
@@ -37,7 +37,7 @@ function uniqStr(str) {
 }
 
 function decodeSign (str) {
-    str = str.replaceAll('!', 'んー').replaceAll('?', '^んー')
+    str = str.replaceAll('?', '^んー')
     str = str.replaceAll('^^', '')
     str = str.replace(/^([^^]+)\^.+$/g, '$1') // [あい^うえ] => [あい]
     return uniqStr(str)
